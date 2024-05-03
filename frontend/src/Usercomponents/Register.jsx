@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../registeruser.css";
 import { useNavigate } from "react-router-dom";
+import { assets } from "../assets/assets";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Register = () => {
         <div className="content">
           
           <img
-            src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png"
+            src={assets.userlogin_icon}
             alt="pin logo"
             className="img1"
           />
