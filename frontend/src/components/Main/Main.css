@@ -24,8 +24,9 @@
 }
 
 .profile-text{
-    color: #f5e5e2;
-    margin-left: 9px;
+    color: #585858;
+    margin-left: 4px;
+    font-size: 24px;
 }
 
 .main .inner-login{
@@ -50,7 +51,7 @@
 
 
 .inner-login:hover{
-    background-color: rgb(75, 106, 199);
+    background-color: rgb(213, 133, 36);
     color: black;
 }
 
@@ -59,7 +60,7 @@
 
 .main .login .profile-image{
     border-radius: 50px;
-    margin-left: 30%;
+    margin-left: 27%;
     border: solid;
     border-color: black;
     border-width: 1px;
@@ -72,8 +73,8 @@
 }
 
 .main .inner-login p{
-    margin-right: 8px;
-    color: rgb(212 212 216);
+    margin-right: 4px;
+    color: #585858;
 }
 
 .main .nav{

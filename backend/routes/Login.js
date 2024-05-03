@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router()
-const LoginPage = require("../controllers/Login")
+
+const RegisterPage = require("../controllers/Login")
 
 // router.route("/login").get(LoginPage);
 
 
-router.post("/register", LoginPage)
+router.post("/register", RegisterPage)
 
 
 

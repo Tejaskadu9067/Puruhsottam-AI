@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         {/* Nested routes for /Home */}
-        <Route path="/Home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const User = require("../Models/User")
 
-const LoginPage = async(req,res) => {
+const RegisterPage = async(req,res) => {
     const {username, email, password, confirm_password} = req.body;
     const newUser = await User.create({
         username,
@@ -13,4 +13,7 @@ const LoginPage = async(req,res) => {
     res.send(newUser)
 }
 
-module.exports = LoginPage
+
+
+
+module.exports = RegisterPage

@@ -43,7 +43,7 @@ const Register = () => {
           password: "",
           confirm_password: "",
         });
-        navigate("/login")
+        navigate("/Home")
       }
     } catch (error) {
       console.log("register", error);
@@ -124,7 +124,7 @@ const Register = () => {
               <b>Terms of Service, Privacy policy.</b>
             </p>
             <hr />
-            <a href="/login">Already on Purushottam? Login</a>
+            <a onClick={()=> navigate("/login")} href="/login">Already on Purushottam? Login</a>
           </footer>
         </div>
       </div>

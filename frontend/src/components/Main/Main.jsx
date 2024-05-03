@@ -4,8 +4,13 @@ import { useState } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import {Context} from '../../context/Context'
+import { useNavigate } from "react-router-dom";
+
+
+  
 
 const Main = () => {
+  const navigate = useNavigate();
   const{ 
     onSent,
     recentPrompt,
@@ -29,28 +34,16 @@ const Main = () => {
       </div>
       {account? <div className="login">
         <img className='profile-image' src={assets.user_icon} alt="" />
-        <p className="profile-text">Hello, Developer!</p>
+        <p className="profile-text"><strong>Namaste Developer</strong></p>
         
           <div className="inner-login">
             <img src={assets.gallery_icon} alt="" /> 
-            <p>Profile</p> 
+            <p onClick={()=> navigate("/login")}>Login User</p> 
           </div>
           <div className="inner-login">
             <img src={assets.history_icon} alt="" /> 
-            <p>Profile</p> 
+            <p onClick={()=> navigate("/")}>Register User</p> 
           </div>
-        
-        
-          <div className="inner-login">
-            <img src={assets.message_icon} alt="" /> 
-            <p>Profile</p> 
-          </div>
-          <div className="inner-login">
-            <img src={assets.bulb_icon} alt="" /> 
-            <p>Profile</p> 
-          </div>
-        
-        
         
         
        </div> : null }
@@ -59,8 +52,8 @@ const Main = () => {
         {!showResult ? <>
         
           <div className="greet">
-            <p><span>Hello, Developer</span></p>
-            <p>How can i help you today?</p>
+            <p><span>Namaste !!</span></p>
+            <p>What are you exploring today?</p>
         </div>
         <div className="cards">
             <div className="card">
@@ -104,8 +97,6 @@ const Main = () => {
             <div className="search-box">
                 <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' />
                 <div>
-                    <img src={assets.gallery_icon} alt="" />
-                    <img src={assets.mic_icon} alt="" />
                     {input?<img onClick={()=>onSent()} src={assets.send_icon} alt="" />: null}
                 </div>
             </div>
