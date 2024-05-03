@@ -1,5 +1,5 @@
 .main{
-    background-color: rgb(24 24 27);
+    background-color: #F7F1ED;
     flex: 1;
     min-height: 40vh;
     padding-bottom: 15vh;
@@ -15,8 +15,8 @@
     right: 0;
     padding: 20px;
     /* background-color: rgb(63 63 70); */
-    background-color: rgb(60, 60, 255);
-    /* background: -webkit-linear-gradient(60deg, rgba(59, 115, 205, 0.8), rgba(206, 50, 36, 0.8)); */
+    background-color: #e98a2c;
+    background: -webkit-linear-gradient(60deg, rgba(236, 112, 10, 0.842), rgba(236, 231, 222, 0.8));
     border-radius: 50px;
     font-size: 32px;
     z-index: 4;
@@ -24,7 +24,7 @@
 }
 
 .profile-text{
-    color: rgb(212 212 216);
+    color: #f5e5e2;
     margin-left: 9px;
 }
 
@@ -232,11 +232,12 @@
 
 .loader hr{
     border-radius: 4px;
+    width: 100%;
     border: none;
     background-color: #f6f7f8;
     background: linear-gradient(to right, #9ed7ff, #ffffff, #9ed7ff);
     background-size: 800px 50px;
-    height: 20px;
+    height: 30px;
     animation: loader 3s infinite linear;
 }
 
