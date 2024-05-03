@@ -90,7 +90,7 @@ const Main = () => {
                 <p>{recentPrompt}</p>
               </div>
               <div className="result-data">
-                <img src={assets.gemini_icon} alt="" />
+                <img src={assets.newgemini} alt="" />
                 {loading? <div className="loader">
                   <hr />
                   <hr />
@@ -109,7 +109,7 @@ const Main = () => {
                     {input?<img onClick={()=>onSent()} src={assets.send_icon} alt="" />: null}
                 </div>
             </div>
-            <p style={{color: "white", marginLeft: "148px"}} className="bottom-info">
+            <p style={{color: "black", marginLeft: "148px"}} className="bottom-info">
                 Purushottam may display inaccurate info, including about people, so double check before using.
             </p>
         </div>

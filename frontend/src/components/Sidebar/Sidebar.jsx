@@ -22,7 +22,7 @@ const Sidebar = () => {
         </div>
         {extended ? (
           <div className="recent">
-            <p className="recent-title">Recent Chats </p>
+            <p className="recent-title"> <strong>Recent Chats</strong> </p>
             {prevPrompts.map((item, index)=>{
               return (
               <div onClick={()=>loadPrompt(item)} className="recent-entry">
