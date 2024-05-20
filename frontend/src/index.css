@@ -8,7 +8,11 @@
 #root{
     min-height: 100vh;
     display: flex;
-    animation: fadeIn 1.5s;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+    font-family: Outfit;
     
 }
 @keyframes fadeIn {
@@ -19,3 +23,7 @@
         opacity: 1;
     }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

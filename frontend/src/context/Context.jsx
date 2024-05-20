@@ -1,16 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import runChat from "../config/gemini";
-
+import axios from "axios"
 export const Context = createContext()
 
 const ContextProvider = (props) =>{
-
+    const [newpassword, setNewPassword] = useState(null)
+    const [newemail, setNewEmail] = useState(null)
+    const [newuser, setNewUser] = useState(null)
     const [input, setInput] = useState("");
     const [recentPrompt, setRecentPrompt] = useState("");
     const [prevPrompts, setPrevPrompts] = useState([]);
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false)
     const [resultData, setResultData] = useState("")
+    const [ready, setReady] = useState(false)
 
 
     const delayPara = (index, nextWord) =>{
@@ -71,8 +74,31 @@ const ContextProvider = (props) =>{
         loading,resultData,
         input,
         setInput,
-        newChat
+        newChat,
+        newuser,
+        setNewUser,
+        ready,
+        setReady,
+        newemail,
+        newpassword
     }
+    useEffect(() => {
+        if(!newuser){
+          console.log("use effect")
+            axios.get('http://localhost:3000/api/profile').then(({data}) =>{
+                console.log(data)
+            setNewUser(data.username)
+            setNewEmail(data.email)
+            setNewPassword(data.id)
+          })
+        }
+      }, [])
+
+  
+
+    
+
+    
 
     return (
         <Context.Provider value={contextValue}>

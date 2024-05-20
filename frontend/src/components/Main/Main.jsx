@@ -3,13 +3,18 @@ import {React,useContext} from 'react'
 import { useState } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
-import {Context} from '../../context/Context'
-import { useNavigate } from "react-router-dom";
+import {UserContext} from '../../context/Context.js'
+import {Context} from '../../context/Context.jsx'
+import { Link, useNavigate } from "react-router-dom";
+import Profile from '../../Usercomponents/Profile.jsx'
+
 
 
   
 
 const Main = () => {
+  // const {newuser} = useContext(Context)
+  
   const navigate = useNavigate();
   const{ 
     onSent,
@@ -18,7 +23,10 @@ const Main = () => {
     loading,
     resultData,
     input,
-    setInput} = useContext(Context)
+    setInput,
+    newuser,
+    setNewUser
+} = useContext(Context)
 
     const [account, setAccount] = useState(false)
     const setAccountState = () =>{
@@ -27,32 +35,30 @@ const Main = () => {
 
 
   return (
+    <UserContext.Provider>
     <div className='main'>
       <div className="nav">
-        <p>Purushottam AI</p>
+        <p>Purushottam.AI</p>
         <img onClick={setAccountState} style={{cursor:"pointer"}} src={assets.user_icon} alt="" />
       </div>
-      {account? <div className="login">
-        <img className='profile-image' src={assets.user_icon} alt="" />
-        <p className="profile-text"><strong>Namaste Developer</strong></p>
-        
-          <div className="inner-login">
-            <img src={assets.gallery_icon} alt="" /> 
-            <p onClick={()=> navigate("/login")}>Login User</p> 
-          </div>
-          <div className="inner-login">
-            <img src={assets.history_icon} alt="" /> 
-            <p onClick={()=> navigate("/")}>Register User</p> 
-          </div>
-        
-        
-       </div> : null }
+      {account? 
+      <div style={{background: "-webkit-linear-gradient(60deg, #F7F1ED, #FEBE80)"}} className=' absolute right-0 mr-6  p-6 rounded-xl mt-4'>
+        <div className="flex gap-2">
+        <Link to={('/profile')} className='border bg-white py-2 px-3 rounded-xl'>
+          <span className='text-black text-md'>PROFILE</span>
+        </Link>
+        <Link to={'/login'} className='border bg-white  py-2 px-3 rounded-xl'>
+          <span className='text-black text-md'>LOGOUT</span>
+        </Link>
+      </div> 
+      </div>
+        : null }
       <div className="main-container">
 
         {!showResult ? <>
         
           <div className="greet">
-            <p><span>Namaste !!</span></p>
+            <p><span>Hello {newuser}.</span></p>
             <p>What are you exploring today?</p>
         </div>
         <div className="cards">
@@ -80,9 +86,9 @@ const Main = () => {
         :<div className="result">
               <div className="result-title">
                 <img src={assets.user_icon} alt="" />
-                <p>{recentPrompt}</p>
+                <p className='text-white'>{recentPrompt}</p>
               </div>
-              <div className="result-data">
+              <div className="result-data bg-white rounded-xl">
                 <img src={assets.newgemini} alt="" />
                 {loading? <div className="loader">
                   <hr />
@@ -106,6 +112,7 @@ const Main = () => {
         </div>
       </div>
     </div>
+    </UserContext.Provider>
   )
 }
 

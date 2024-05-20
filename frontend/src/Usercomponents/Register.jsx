@@ -1,65 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../registeruser.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { UserContext } from "../context/Context.js";
+import { Context } from "../context/Context.jsx";
+import axios from "axios";
+
+
+
 
 const Register = () => {
+  const[username, setUsername] = useState("")
+  const[password, setPassword] = useState("")
+  const[email, setEmail] = useState("")
+
+  const {setNewUser} = useContext(Context)
+  
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirm_password: "",
-  });
+  
 
-  //handling the input value
-  const handleInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
-
-  //handling form submission
 
   const handleSubmit = async (e) => {
-    let URL = "http://localhost:3000/api/register";
+
     e.preventDefault();
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.ok) {
-        setUser({
-          username: "",
-          email: "",
-          password: "",
-          confirm_password: "",
-        });
-        navigate("/Home")
-      }
-    } catch (error) {
-      console.log("register", error);
-    }
-  };
+      const {data} = axios.post('http://localhost:3000/api/register',{email,username,password})
+      if ({data}) {
+        setNewUser(data)
+        navigate("/login")
+        console.log(data)
+    } 
+  }catch (error) {
+    console.log("register", error);
+  }
+}
 
   return (
     <>
+    <UserContext.Provider>
       <div className="container">
         <div className="content">
           
           <img
             src={assets.userlogin_icon}
             alt="pin logo"
-            className="img1"
+            className="img1 ml-[40%]"
           />
           <p className="header">Register account to see more</p>
 
@@ -68,8 +53,8 @@ const Register = () => {
               type="email"
               name="email"
               placeholder="Email"
-              value={user.email}
-              onChange={handleInput}
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               className="detail"
             />
             <br />
@@ -77,24 +62,16 @@ const Register = () => {
               type="text"
               name="username"
               placeholder="Username"
-              value={user.username}
-              onChange={handleInput}
+              value={username}
+              onChange={(e)=>setUsername(e.target.value)}
               className="detail"
             />
             <input
               type="password"
               name="password"
               placeholder="Password"
-              value={user.password}
-              onChange={handleInput}
-              className="detail"
-            />
-            <input
-              type="password"
-              name="confirm_password"
-              placeholder="Confirm Password"
-              value={user.confirm_password}
-              onChange={handleInput}
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               className="detail"
             />
             <input type="submit" className="btn int" value="register account" />
@@ -103,21 +80,6 @@ const Register = () => {
           <a href="/forgot">Forgot your password?</a>
 
           <p className="or">OR</p>
-          {/* <button className="btn fbk">
-            <i
-              className="fab fa-facebook fa-lg"
-              style={{ color: "white", paddingRight: "10px" }}
-            ></i>
-            <a href="#">Continue with Facebook</a>
-          </button>
-          <br />
-          <button className="btn ggl">
-            <i
-              className="fab fa-google"
-              style={{ color: "rgb(11, 241, 22)", paddingRight: "10px" }}
-            ></i>
-            <a href="#">Continue with Google</a>
-          </button> */}
 
           <footer>
             <p>
@@ -125,12 +87,15 @@ const Register = () => {
               <b>Terms of Service, Privacy policy.</b>
             </p>
             <hr />
-            <a onClick={()=> navigate("/login")} href="/login">Already on Purushottam? Login</a>
+            <p><Link to={"/login"} >Already on Purushottam? Login</Link></p>
           </footer>
+          
         </div>
       </div>
+      </UserContext.Provider>
     </>
   );
 };
+
 
 export default Register;
