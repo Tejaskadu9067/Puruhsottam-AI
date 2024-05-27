@@ -8,6 +8,8 @@ router.use(cookieParser());
 const jwtSecret = "shjvefjsevf7t564783r537f346tf3674f"
 router.post("/register", RegisterPage);
 
+
+
 router.post("/login", LoginPage);
 
 router.get("/login", (req, res) => {

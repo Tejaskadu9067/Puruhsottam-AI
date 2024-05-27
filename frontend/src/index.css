@@ -8,7 +8,7 @@
 #root{
     min-height: 100vh;
     display: flex;
-    background-color: white;
+    background-color: rgb(161, 161, 170);
     padding: 0;
     margin: 0;
     box-sizing: 0;

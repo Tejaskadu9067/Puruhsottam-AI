@@ -6,18 +6,24 @@ const jwt = require("jsonwebtoken")
 
 
 
+
 const jwtSecret = "shjvefjsevf7t564783r537f346tf3674f"
 
 const RegisterPage = async(req,res) => {
-    const {username, email, password} = req.body;
+    const {username, email, password, age, WorkDomain, hobbies} = req.body;
     const newUser = await User.create({
         username,
         email,
-        password
+        password,
+        age,
+        WorkDomain,
+        hobbies
     })
     await newUser.save();
     res.json(newUser)
 }
+
+
 
 const LoginPage = async (req, res) => {
     const { username, password } = req.body;

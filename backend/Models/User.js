@@ -15,6 +15,18 @@ const userSchema = new Schema({
   password: { 
     type: String, 
     required: true 
+},
+age: { 
+  type: Number, 
+  required: true 
+},
+WorkDomain: { 
+  type: String, 
+  required: true 
+},
+hobbies: { 
+  type: String, 
+  required: true 
 }
 },{timestamps: true});
 

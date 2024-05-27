@@ -1,5 +1,5 @@
 .main{
-    background-color: #603f8b;
+
     flex: 1;
     min-height: 40vh;
     padding-bottom: 15vh;
@@ -10,7 +10,7 @@
 
 
 .main .nav{
-    background: -webkit-linear-gradient(60deg, #F7F1ED, #FEBE80);
+
     /* background-color: #030303; */
     display: flex;
     align-items: center;
@@ -35,13 +35,13 @@
 .main .greet{
     margin: 50px 0px;
     font-size: 56px;
-    color: #c4c7c5;
+
     font-weight: 500;
     padding: 20px;
 }
 
 .main .greet span{
-    background: -webkit-linear-gradient(16deg, #fffffe, #46cbff);
+    background: -webkit-linear-gradient(28deg, #6b6b6b, #000304);
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

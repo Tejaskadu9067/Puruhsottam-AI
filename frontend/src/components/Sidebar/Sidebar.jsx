@@ -13,7 +13,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="sidebar">
+    <div className="sidebar bg-zinc-400">
       <div className="top">
         <img onClick={()=> setExtended(prev=> !prev)} className="menu" src={assets.menu_icon} alt="" />
         <div onClick={()=>newChat()} className="new-chat">

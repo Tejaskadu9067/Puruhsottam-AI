@@ -19,7 +19,7 @@ export default function Profile() {
         />
         <div className="border p-4 rounded-2xl bg-white text-black mb-2  cursor-pointer "><b>Username:</b> {newuser} </div>
         <div className="border p-4 rounded-2xl bg-white text-black mb-2  cursor-pointer "><b>Email:</b> {newemail} </div>
-        <div className="border p-4 rounded-2xl bg-white text-black mb-2  cursor-pointer "><b>Password:</b> {newpassword} </div>
+        <div className="border p-4 rounded-2xl bg-white text-black mb-2  cursor-pointer "><b>User Id:</b> {newpassword} </div>
         <div></div>
       </div>
       <div className="rounded-xl bg-indigo-400 p-4">
@@ -27,7 +27,7 @@ export default function Profile() {
         <span className="text-2xl text-white">Recent Chats:</span>
         <div className=" overflow-y-scroll">
         {prevPrompts.map((item) => {
-          return <p className="p-4 mt-2 bg-white text-black rounded-xl">{item.slice(0,18)} ...</p>
+          return <p className="p-4 mt-2 bg-white text-black rounded-xl">{item.slice(0,22)} ...</p>
         })}
         </div>
         

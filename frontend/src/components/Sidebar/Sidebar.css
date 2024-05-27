@@ -1,6 +1,6 @@
 .sidebar{
     /* background-color: #000405; */
-    background: -webkit-linear-gradient(60deg, #FEBE80, #F7F1ED);
+  
     min-height: 60vh;
     display: inline-flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 }
 
 .sidebar img{
-    width: 22px; 
+    width: 32px; 
     
 }
 
