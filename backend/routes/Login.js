@@ -3,7 +3,7 @@ const router = express.Router();
 const cookieParser = require("cookie-parser");
 const { RegisterPage, LoginPage } = require("../controllers/Login");
 const User = require("../Models/User");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 router.use(cookieParser());
 const jwtSecret = "shjvefjsevf7t564783r537f346tf3674f"
 router.post("/register", RegisterPage);
@@ -19,6 +19,14 @@ router.get("/login", (req, res) => {
 router.get("/register", (req, res) => {
   res.send("i am Register get");
 });
+
+
+
+router.post("/question-answer", (req, res) => {
+  // let {question, answer} = req.body
+  res.send(req.body)
+});
+
 
 
 

@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = axios.post("http://localhost:3000/api/register", {
+      const { data } = await axios.post("http://localhost:3000/api/register", {
         email,
         username,
         password,
@@ -31,7 +31,7 @@ const Register = () => {
         WorkDomain,
         hobbies,
       });
-      if ({ data }) {
+      if (data) {
         navigate("/login");
       }
     } catch (error) {
@@ -41,139 +41,154 @@ const Register = () => {
 
   return (
     <>
-      <UserContext.Provider>
-        <div className="container mx-auto p-4 w-[28rem] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg bg-white">
-          <div className="content mx-auto text-center w-3/5">
-            <img
-              src={assets.userlogin_icon}
-              alt="pin logo"
-              className="img1 w-44 relative top-5 ml-[12%]"
-            />
-            <p className="header text-4xl font-bold mt-10 mb-2 leading-tight">
-              Register account to see more
-            </p>
-
-            <form>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-              />
-              <br />
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-              />
-              <input
-                onClick={() => setUserDetails(true)}
-                type="button"
-                className="btn int w-full h-10 my-1 rounded-full text-lg bg-black text-white font-bold hover:bg-red-700 cursor-pointer"
-                value="Next"
-              />
-            </form>
-
-            <Link to="/forgot" className="text-blue-600 hover:underline">
-              Forgot your password?
-            </Link>
-
-            <p className="or text-sm font-bold my-2.5">OR</p>
-
-            <footer className="mt-2">
-              <p className="text-xs my-2.5 opacity-70">
-                By continuing, you agree to Purushottam's{" "}
-                <b>Terms of Service, Privacy policy.</b>
-              </p>
-              <hr className="w-1/2 opacity-40 mx-auto" />
-              <p>
-                <Link to={"/login"} className="text-blue-600 hover:underline">
-                  Already on Purushottam? Login
-                </Link>
-              </p>
-            </footer>
-          </div>
-        </div>
-
-        {userDetails ? (
-          <div className="container mx-auto px-4 py-10 w-[28rem] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg bg-white">
-            <div className="content mx-auto text-center w-3/5">
+      <div className="fixed inset-0 bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-white bg-opacity-90 p-8 w-full max-w-md rounded-lg shadow-lg">
+            <div className="text-center">
               <img
                 src={assets.userlogin_icon}
-                alt="pin logo"
-                className="img1 w-44 relative top-5 ml-[12%]"
+                alt="User icon"
+                className="w-20 mx-auto mt-6"
               />
-              <p className="header text-4xl font-bold mt-10 mb-2 leading-tight">
-                Tell us more about you.
-              </p>
-
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="number"
-                  name="number"
-                  placeholder="Age"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-                />
-                <br />
-                <input
-                  type="text"
-                  placeholder="Work Domain"
-                  value={WorkDomain}
-                  onChange={(e) => setWorkDomain(e.target.value)}
-                  className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-                />
-                <input
-                  type="text"
-                  name="hobbies"
-                  placeholder="Hobbies (Any two)"
-                  value={hobbies}
-                  onChange={(e) => setHobbies(e.target.value)}
-                  className="detail w-full h-12 my-1.5 p-3.5 text-sm text-gray-500 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
-                />
-                <input
-                  type="submit"
-                  className="btn int w-full h-10 my-1 rounded-full text-lg bg-black text-white font-bold hover:bg-red-700 cursor-pointer"
-                  value="Register account"
-                />
+              <p className="text-2xl font-bold mt-6 mb-4">Register to Your Account</p>
+              <form className="space-y-6">
+                <div>
+                  <input
+                    autoComplete="off"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                  />
+                </div>
+                <div>
+                  <input
+                    autoComplete="off"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                  />
+                </div>
+                <div>
+                  <input
+                    autoComplete="off"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setUserDetails(true)}
+                    className="block w-full px-4 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+                  >
+                    Next
+                  </button>
+                </div>
               </form>
-
-              <Link to="/forgot" className="text-blue-600 hover:underline">
-                Forgot your password?
-              </Link>
-
-              <p className="or text-sm font-bold my-2.5">OR</p>
-
-              <footer className="mt-2">
-                <p className="text-xs my-2.5 opacity-70">
+              <div className="mt-6">
+                <Link to="/forgot" className="text-sm text-blue-600 hover:underline">
+                  Forgot your password?
+                </Link>
+              </div>
+              <p className="mt-4 text-sm font-medium text-gray-600">OR</p>
+              <footer className="mt-4">
+                <Link to="/login" className="text-sm text-blue-600 hover:underline">
+                  Already on Purushottam? Login
+                </Link>
+                <hr className="my-4 border-gray-300" />
+                <p className="text-xs text-gray-500">
                   By continuing, you agree to Purushottam's{" "}
-                  <b>Terms of Service, Privacy policy.</b>
-                </p>
-                <hr className="w-1/2 opacity-40 mx-auto" />
-                <p>
-                  <Link to={"/login"} className="text-blue-600 hover:underline">
-                    Already on Purushottam? Login
-                  </Link>
+                  <b>Terms of Service, Privacy Policy.</b>
                 </p>
               </footer>
             </div>
           </div>
-        ) : null}
-      </UserContext.Provider>
+        </div>
+      </div>
+      {userDetails && (
+        <div className="fixed inset-0 bg-gradient-to-r from-blue-500 to-purple-600">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-white bg-opacity-90 p-8 w-full max-w-md rounded-lg shadow-lg">
+              <div className="text-center">
+                <img
+                  src={assets.userlogin_icon}
+                  alt="User icon"
+                  className="w-20 mx-auto mt-6"
+                />
+                <p className="text-2xl font-bold mt-6 mb-4">Tell us more about you</p>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <input
+                      autoComplete="off"
+                      type="number"
+                      name="age"
+                      placeholder="Age"
+                      value={age}
+                      onChange={(e) => setAge(e.target.value)}
+                      className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      autoComplete="off"
+                      type="text"
+                      placeholder="Work Domain"
+                      value={WorkDomain}
+                      onChange={(e) => setWorkDomain(e.target.value)}
+                      className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      autoComplete="off"
+                      type="text"
+                      name="hobbies"
+                      placeholder="Hobbies (Any two)"
+                      value={hobbies}
+                      onChange={(e) => setHobbies(e.target.value)}
+                      className="block w-full px-4 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+                    />
+                  </div>
+                  <div>
+                    <button
+                      type="submit"
+                      className="block w-full px-4 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
+                    >
+                      Register Account
+                    </button>
+                  </div>
+                </form>
+                <div className="mt-6">
+                  <Link to="/forgot" className="text-sm text-blue-600 hover:underline">
+                    Forgot your password?
+                  </Link>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-600">OR</p>
+                <footer className="mt-4">
+                  <Link to="/login" className="text-sm text-blue-600 hover:underline">
+                    Already on Purushottam? Login
+                  </Link>
+                  <hr className="my-4 border-gray-300" />
+                  <p className="text-xs text-gray-500">
+                    By continuing, you agree to Purushottam's{" "}
+                    <b>Terms of Service, Privacy Policy.</b>
+                  </p>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

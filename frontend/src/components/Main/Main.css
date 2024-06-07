@@ -162,6 +162,8 @@
 
 
 .loader{
+    border-radius: 4px;
+    background-color: black;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -181,6 +183,9 @@
 @keyframes loader {
     0%{
         background-position: -800px 0px;
+    }
+    50%{
+        background-position: 400px 0px;
     }
     100%{
         background-position: 800px 0px;

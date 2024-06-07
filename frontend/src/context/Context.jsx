@@ -86,7 +86,7 @@ const ContextProvider = (props) =>{
         if(!newuser){
           console.log("use effect")
             axios.get('http://localhost:3000/api/profile').then(({data}) =>{
-                console.log(data)
+
             setNewUser(data.username)
             setNewEmail(data.email)
             setNewPassword(data.id)
